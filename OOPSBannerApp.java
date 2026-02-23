@@ -1,60 +1,69 @@
 public class OOPSBannerApp {
 
+    // Static Inner Class to store character and its pattern
+    static class CharacterPattern {
+        private char character;
+        private String[] pattern;
+
+        public CharacterPattern(char character, String[] pattern) {
+            this.character = character;
+            this.pattern = pattern;
+        }
+
+        public char getCharacter() {
+            return character;
+        }
+
+        public String[] getPattern() {
+            return pattern;
+        }
+    }
+
     public static void main(String[] args) {
 
-        String[] banner = new String[7];
+        // Create pattern objects
+        CharacterPattern O = new CharacterPattern('O', new String[]{
+                " ***** ",
+                "*     *",
+                "*     *",
+                "*     *",
+                "*     *",
+                "*     *",
+                " ***** "
+        });
 
-        String[] O = buildO();
-        String[] P = buildP();
-        String[] S = buildS();
+        CharacterPattern P = new CharacterPattern('P', new String[]{
+                "*****  ",
+                "*    * ",
+                "*    * ",
+                "*****  ",
+                "*      ",
+                "*      ",
+                "*      "
+        });
 
-        // Combine letters to form "OOPS"
-        for (int i = 0; i < banner.length; i++) {
-            banner[i] = String.join("   ", O[i], O[i], P[i], S[i]);
-        }
+        CharacterPattern S = new CharacterPattern('S', new String[]{
+                " ***** ",
+                "*     *",
+                "*      ",
+                " ***** ",
+                "      *",
+                "*     *",
+                " ***** "
+        });
 
-        // Print banner
-        for (String line : banner) {
+        // Word to print
+        CharacterPattern[] word = {O, O, P, S};
+
+        // Build banner using stored mappings
+        for (int row = 0; row < 7; row++) {
+            StringBuilder line = new StringBuilder();
+
+            for (CharacterPattern cp : word) {
+                line.append(cp.getPattern()[row]).append("   ");
+            }
+
             System.out.println(line);
         }
-    }
-
-    // Static method to build letter O
-    public static String[] buildO() {
-        return new String[]{
-            " ***** ",
-            "*     *",
-            "*     *",
-            "*     *",
-            "*     *",
-            "*     *",
-            " ***** "
-        };
-    }
-
-    // Static method to build letter P
-    public static String[] buildP() {
-        return new String[]{
-            "*****  ",
-            "*    * ",
-            "*    * ",
-            "*****  ",
-            "*      ",
-            "*      ",
-            "*      "
-        };
-    }
-
-    // Static method to build letter S
-    public static String[] buildS() {
-        return new String[]{
-            " ***** ",
-            "*     *",
-            "*      ",
-            " ***** ",
-            "      *",
-            "*     *",
-            " ***** "
-        };
     }
 }
