@@ -1,4 +1,4 @@
-package lvl1;
+FirstSmallest.javapackage lvl1;
 
 import java.util.Scanner;
 
